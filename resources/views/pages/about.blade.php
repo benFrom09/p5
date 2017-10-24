@@ -1,4 +1,4 @@
-@extends('layout.default')
+@extends('layout.default', ['title' =>'about'])
 
 @section('content')
 
@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-6">
                 <p class="alert alert-warning">
-                    <strong><i class="fa fa-smile-o" aria-hidden="true"></i>App-Name has been built by <a href="#">@ben09</a> for webrtc demo </strong>
+                    <strong><i class="fa fa-smile-o" aria-hidden="true"></i>App-Name has been built by <a href="https://github.com/benFrom09/p5">@ben09</a> for webrtc demo </strong>
                 </p>
             </div><!-- /.col-md-6 -->
 
