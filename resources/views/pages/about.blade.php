@@ -4,7 +4,8 @@
 
     <div class="container">
 
-        <h2>WHAT is APP-Name</h2>
+        <h2>WHAT is {{config('app.name')}}</h2>
+        <hr>
 
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo nulla id, ex dolore voluptatibus vero excepturi.
          Ducimus exercitationem, fuga expedita itaque illum accusantium ex ratione voluptatem amet sint soluta debitis!
@@ -12,17 +13,18 @@
 
         <div class="row">
             <div class="col-md-6">
-                <p class="alert alert-warning">
-                    <strong><i class="fa fa-smile-o" aria-hidden="true"></i>App-Name has been built by <a href="https://github.com/benFrom09/p5">@ben09</a> for webrtc demo </strong>
+                <p class="about-alert">
+                    <strong><i class="fa fa-smile-o" aria-hidden="true"></i> {{config('app.name')}} has been built by <a href="https://github.com/benFrom09/p5">@ben09</a> for webrtc demo </strong>
                 </p>
             </div><!-- /.col-md-6 -->
 
         </div><!-- /.row -->
-        <p>contibute to help improvee <a href="#">source code</a></p>
+       
 
         <hr>
 
-        <h2>tools annd services used in App-Name</h2>
+        <h2>tools and services used in {{config('app.name')}}</h2>
+        <hr>
         <ul>
             <li>Laravel</li>
             <li>Bootstrap</li>
