@@ -37,6 +37,26 @@
 
     @include('layout.partials.nav')
 
+    @if(session('success'))
+        <div class="container">
+
+            <div class="alert alert-success">
+                {{session('success')}}
+            </div>
+        
+        </div>.
+        @endif
+        @if(session('errors'))
+        <div class="container">
+
+            <div class="alert alert-danger">
+                {{session('errors')}}
+            </div>
+        
+        </div>.
+        @endif
+
+
     @yield('content');
 
     @include('layout.partials.footer')
