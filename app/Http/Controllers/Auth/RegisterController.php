@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\RegisterUser;
+
 
 class RegisterController extends Controller
 {
@@ -39,6 +43,33 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function confirmation($id,$token) {
+        $user = User::where('id', $id)->where('confirmation_token', $token)->first();
+        if($user) {
+            //update and erase confirmation_token
+            $user->update(['confirmation_token' => null]);
+            $this->guard()->login($user);
+            return redirect($this->redirectPath())->with('success', 'votre compte est maintenant confirmé :)');
+        } else {
+            redirect('/login')->with('errors',"le lien n'est pas valide :( " );
+        }
+    }
+
+    /**
+     * modify register function from trait RegisterUsers
+     * to send emails confirmations
+     */
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+        $user->notify(new RegisterUser());
+        return redirect('/login')->with('success','votre compte a bien été creée, vous aller recevoir un email de confirmation');
+    }
+
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -66,6 +97,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'confirmation_token' =>str_replace('/','', bcrypt(str_random(25)))
         ]);
     }
 }

@@ -18,3 +18,8 @@ Route::get('/', [
 
 Route::get('/about', 'PagesController@about')->name('About');
    
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/confirmation/{id}/{token}','Auth\RegisterController@confirmation');
+

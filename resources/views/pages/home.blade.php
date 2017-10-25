@@ -2,6 +2,7 @@
 
 @section('content')
 
-    <h1>Scolarnet</h1>
+    <h1 class="text-center">{{config('app.name')}}</h1>
+    <hr>
 
 @stop
