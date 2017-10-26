@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Group;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $table ='users';
+
+    public function groups() {
+        
+        return $this->belongsToMany(Group::class);
+       
+    }
+
+    public function hasGroup() {
+
+        if($this->groups()) {
+            //dd(Group::get()[0]->name);
+            return true;
+        }
+    }
 }
