@@ -22,7 +22,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/confirmation/{id}/{token}','Auth\RegisterController@confirmation');
-Route::get('/creategroup','CreateGroupController@create');
-Route::post('/creategroup','CreateGroupController@store');
-Route::get('/group/{id}','GroupController@show');
+//Route::get('/creategroup','CreateGroupController@create');
+//Route::post('/creategroup','CreateGroupController@store');
+//Route::get('/group/{id}','GroupController@show')->where('id','[0-9]+');
+Route::resource('group','GroupController');
 
