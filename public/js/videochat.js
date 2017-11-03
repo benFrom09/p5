@@ -1,5 +1,6 @@
 const SPINER = 'fa fa-spinner faa-spin animated';
-const OUTPUT = document.getElementById("#chats");
+const OUTPUT = document.getElementById("chats");
+const username = $('#messageSender').value;
 console.log(OUTPUT);
 // server stun
 
@@ -27,7 +28,7 @@ socket.onopen = function(e) {
     socket.send(JSON.stringify({
         action: 'status'
     }));
-    e.message = "vous etes connecté au serveur :) "
+    e.message = username + ": vous etes connecté au serveur :) "
     displayMessage(e.message);
 }
 
@@ -58,7 +59,7 @@ socket.onmessage = function(e) {
             setOnlineStatus('offline');
             break;
         case 'text':
-            displayMessage('<span style="color: blue;"> ' + data.msg + '</span>');
+            displayMessage('<span style="color: blue;"> ' + data.username + ' : ' + data.msg + ' ' + data.date + '</span>');
             break;
         case 'typingTxt':
             if (data.status) {
@@ -123,27 +124,30 @@ $("#chatSendBtn").addEventListener('click', function(e) {
         return;
     }
     var msg = $("#chatInput").value;
+
     if (msg) {
         // insere la date
         var date = new Date().toLocaleTimeString();
         // insere un id au mssage
-        var msgId;
+
+
         //vide l'input
         $("#chatInput").value = '';
         $("#chatInput").focus();
         //envoie le message 
-        sendChat(msg, date, msgId);
+        sendChat(msg, date, username);
         displayMessage(msg);
 
 
     }
 });
 
-function sendChat(msg, date, id) {
+function sendChat(msg, date, username) {
     socket.send(JSON.stringify({
         type: 'text',
         msg: msg,
-        date: date
+        date: date,
+        username: username
     }));
 }
 
@@ -191,9 +195,21 @@ function userInputSupplied() {
 
 function displayMessage(msg) {
     var p = document.createElement('p');
-    p.innerHTML = msg;
+    if (msg.match(/http/)) {
+        var link = document.createElement('a');
+        link.href = msg;
+        link.textContent = msg;
+        p.appendChild(link);
+    } else {
+        p.innerHTML = msg;
+
+    }
     OUTPUT.appendChild(p);
 }
+
+
+
+
 
 
 function setOnlineStatus(status) {

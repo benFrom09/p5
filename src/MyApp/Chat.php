@@ -21,19 +21,19 @@ class Chat implements MessageComponentInterface
     public function onOpen(ConnectionInterface $conn) {
         // Store the new connection to send messages to later
         $this->clients->attach($conn);
-        
-        echo "New connection!" . $conn->resourceId. "\n";
+        //var_dump($conn);
+        echo "New connection!" . " id :" . $conn->resourceId. "\n";
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
 
         $data = json_decode($msg);
-         
-        $action = $data->action;
-        $type = $data->type;
-        var_dump($action);
         
-        $this->connectionStatus($msg);
+        
+       
+       
+        
+        var_dump($this->connectionStatus($msg));
         
         $numRecv = count($this->clients) - 1;
         echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"

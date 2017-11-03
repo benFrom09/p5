@@ -11,7 +11,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="{{routeIsActive('Home')}}"><a href="{{ route('Home')}}">Home</a></li>
+                <li class="{{routeIsActive('home')}}"><a href="{{ route('home')}}">Home</a></li>
                 <li class="{{routeIsActive('About')}}"><a href="{{ route('About')}}">About</a></li>
                 <li class=""><a href="#contact">Contact</a></li>
                 <li class="dropdown">

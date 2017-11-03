@@ -1,0 +1,17 @@
+/**********************************************************
+*           input
+**********************************************************/
+
+
+/*
+input[type="file"] {
+    display: none;
+}
+*/
+
+.c-file-upload {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #e3e3e3da;
+    cursor: pointer;
+}

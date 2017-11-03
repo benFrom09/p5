@@ -1,0 +1,109 @@
+.content {
+    background: #fff;
+    font-size: 19px;
+    line-height: 1.5;
+    border-radius: 5px;
+    position: relative;
+}
+
+.float {
+    margin: 30px auto;
+    width: 60%;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.4) all;
+    z-index: 12;
+}
+
+.float input[type=text] {
+    /*padding: 30px 20px;*/
+    font-size: 15px;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.4) all;
+    color: #000;
+}
+
+.float-bottom {
+    padding: 6px 10px 8px;
+    text-align: right;
+    border-top: 1px solid #DDD;
+}
+
+.float-bottom button {
+    padding: 4px 8px;
+    font-size: 10px;
+}
+
+.dashboard {
+    position: relative;
+    height: 100vh;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*background: rgba(0, 0, 0, 0.5);*/
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: 0.3s ease opacity;
+    pointer-events: none;
+    z-index: 10;
+}
+
+body.show-float .float {
+    transform: scale(1.1);
+}
+
+body.show-float .float input[type=text] {
+    /*padding: 30px;*/
+    font-size: 18px;
+}
+
+body.show-float .overlay {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.dashboard-list {
+    position: relative;
+    z-index: 9;
+}
+
+.dashboard-post {
+    display: block;
+    background: #f2f2f2;
+    padding: 20px;
+    transition: 0.3s ease all;
+    border-bottom: 1px solid #DDD;
+    font-size: 16px;
+    text-decoration: none;
+    margin: 10px;
+    position: relative;
+}
+
+.dashboard-post:hover {
+    color: rgb(15, 218, 167);
+}
+
+.dashboard-post:first-child {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.dashboard-post:first-child {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.dashboard-post .glyphicon-remove {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: rgba(8, 208, 223, 0.637);
+    font-size: 12px;
+    transition: 0.3s ease color;
+    cursor: pointer;
+}
+
+.dashboard-post:hover .glyphicon-remove {
+    color: rgba(211, 9, 9, 0.849);
+}
