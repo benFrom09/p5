@@ -16,7 +16,7 @@ function closeFloat() {
 }
 
 input.addEventListener('focusin', showFloat);
-//input.addEventListener('focusout', closeFloat);
+
 overlay.addEventListener('click', closeFloat);
 
 
