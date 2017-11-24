@@ -35,7 +35,7 @@ const id = '59fca8d730b7020b00f62836';
 fillDashboardList(posts);
 
 function createPost(e) {
-    e.preventDefault();
+    //e.preventDefault();
     if (dashboardInput.value.match(/http/)) {
         alert('ok');
         var url = encodeURIComponent(dashboardInput.value);

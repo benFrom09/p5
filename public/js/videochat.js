@@ -1,6 +1,6 @@
 const SPINER = 'fa fa-spinner faa-spin animated';
-const OUTPUT = document.getElementById("chats");
-const username = $('#messageSender').value;
+const OUTPUT = document.querySelector("#chats");
+const username = document.querySelector('#messageSender').value;
 console.log(OUTPUT);
 // server stun
 
@@ -70,10 +70,10 @@ socket.onmessage = function(e) {
             }
             break;
         case 'initCall':
-            document.getElementById('calleeInfo').style.color = 'black';
-            document.getElementById('calleeInfo').innerHTML = data.msg;
+            document.querySelector('#calleeInfo').style.color = 'black';
+            document.querySelector('#calleeInfo').innerHTML = data.msg;
 
-            document.getElementById("rcivModal").style.display = 'block';
+            document.querySelector("#rcivModal").style.display = 'block';
             break;
         case 'candidate':
             //message is iceCandidate
@@ -91,17 +91,17 @@ socket.onmessage = function(e) {
         case 'isCalling':
             isCalling(false); //to start call when callee gives the go ahead (i.e. answers call)
 
-            document.getElementById("callModal").style.display = 'none'; //hide call modal
+            document.querySelector("#callModal").style.display = 'none'; //hide call modal
 
             //clearTimeout(awaitingResponse); //clear timeout
 
             //stop tone
-            // document.getElementById('callerTone').pause();
+            // document.querySelector('callerTone').pause();
             break;
         case 'cancelCall':
             console.log('message transmit');
             //endCall(data.msg);
-            document.getElementById("rcivModal").style.display = 'none';
+            document.querySelector("#rcivModal").style.display = 'none';
             // stopMediaStream();
             break;
 
@@ -123,7 +123,7 @@ $("#chatSendBtn").addEventListener('click', function(e) {
         alert(validateMsg);
         return;
     }
-    var msg = $("#chatInput").value;
+    var msg = document.querySelector("#chatInput").value;
 
     if (msg) {
         // insere la date
@@ -132,8 +132,8 @@ $("#chatSendBtn").addEventListener('click', function(e) {
 
 
         //vide l'input
-        $("#chatInput").value = '';
-        $("#chatInput").focus();
+        document.querySelector("#chatInput").value = '';
+        document.querySelector("#chatInput").focus();
         //envoie le message 
         sendChat(msg, date, username);
         displayMessage(msg);
@@ -153,7 +153,7 @@ function sendChat(msg, date, username) {
 
 // notify user is typing text
 
-$("#chatInput").addEventListener('keyup', function(e) {
+document.querySelector("#chatInput").addEventListener('keyup', function(e) {
 
     var msg = this.value;
     if (msg) {
@@ -178,7 +178,7 @@ $("#chatInput").addEventListener('keyup', function(e) {
 
 
 function userInputSupplied() {
-    var msg = $("#chatInput").value;
+    var msg = document.querySelector("#chatInput").value;
     if (msg = '') {
         return 'veuillez saisir du texte svp'
     } else {
@@ -214,11 +214,11 @@ function displayMessage(msg) {
 
 function setOnlineStatus(status) {
     if (status === 'online') {
-        $("#remoteStatus").style.color = 'green';
-        $("#remoteStatusTxt").innerHTML = 'online';
+        document.querySelector("#remoteStatus").style.color = 'green';
+        document.querySelector("#remoteStatusTxt").innerHTML = 'online';
     } else {
-        $("#remoteStatus").style.color = 'green';
-        $("#remoteStatusTxt").innerHTML = 'offline';
+        document.querySelector("#remoteStatus").style.color = 'green';
+        document.querySelector("#remoteStatusTxt").innerHTML = 'offline';
     }
 }
 
@@ -243,7 +243,7 @@ function browserSupportsWebSockets() {
  *
  *------------------------------------------------------------------------------*/
 
-var callIcon = $class('initCall');
+var callIcon = document.getElementsByClassName('initCall');
 console.log(callIcon.length);
 for (var i = 0; i < callIcon.length; i++) {
     callIcon[i].addEventListener('click', initCall);
@@ -260,7 +260,7 @@ function initCall() {
 
     //choose type of the call
     var call = this.id === 'initVideo' ? 'Video' : 'Audio';
-    callerInfo = document.getElementById('callerInfo');
+    callerInfo = document.querySelector('callerInfo');
     console.log(callerInfo);
     //infos d el'appelant
 
@@ -282,10 +282,10 @@ function initCall() {
 
         }));
         //Btn btn
-        document.getElementById('terminateCall').removeAttribute('disabled');
+        document.querySelector('terminateCall').removeAttribute('disabled');
     }
 
-    document.getElementById("callModal").style.display = 'block';
+    document.querySelector("callModal").style.display = 'block';
 
 }
 
@@ -295,11 +295,11 @@ function answerCall() {
         constraints = this.id === 'startVideo' ? { video: true, audio: false } : { audio: true };
         constraintsTwo = this.id === 'Video' ? { video: true, audio: false } : { audio: true };
         alert('ok');
-        $("#calleeInfo").innerHTML = "<i class= " + SPINER + "></i> Setting up call...";
+        document.querySelector("calleeInfo").innerHTML = "<i class= " + SPINER + "></i> Setting up call...";
         console.log(constraintsOne, constraintsTwo)
         isCalling(true);
-        document.getElementById("rcivModal").style.display = 'none';
-        document.getElementById('terminateCall').removeAttribute('disabled');
+        document.querySelector("rcivModal").style.display = 'none';
+        document.querySelector('terminateCall').removeAttribute('disabled');
     }
 
 }
@@ -320,7 +320,7 @@ function isCalling(caller) {
         //avaible remote stream
 
         pc.ontrack = function(e) {
-            $("#remoteVideo").src = window.URL.createObjectURL(e.streams[0]);
+            document.querySelector("#remoteVideo").src = window.URL.createObjectURL(e.streams[0]);
         };
         getUserMedia(constraintsOne, caller);
     }
@@ -334,7 +334,7 @@ function getUserMedia(constraintsOne, caller) {
 
 
 
-        $("#localVideo").src = window.URL.createObjectURL(stream);
+        document.querySelector("#localVideo").src = window.URL.createObjectURL(stream);
 
         //add localstream to rtcpeer
         //stream.addTrack(screenStream.getVideoTracks()[0]);
@@ -380,7 +380,7 @@ function gotDescription(desc) {
     }))
 }
 
-document.getElementById("terminateCall").addEventListener('click', function(e) {
+document.querySelector("terminateCall").addEventListener('click', function(e) {
     e.preventDefault();
 
     endCall("Call ended by remote");
@@ -389,12 +389,12 @@ document.getElementById("terminateCall").addEventListener('click', function(e) {
     enableCallBtns();
 });
 
-document.getElementById("endCall").addEventListener('click', function(e) {
+document.querySelector("endCall").addEventListener('click', function(e) {
     e.preventDefault();
 
     cancelCall("Call cancelled by remote");
 
-    document.getElementById("callModal").style.display = 'none';
+    document.querySelector("callModal").style.display = 'none';
 
 
 

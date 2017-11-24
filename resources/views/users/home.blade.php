@@ -41,7 +41,7 @@
                             <textarea class="form-control" name="content" id="content"></textarea>
                         </div>
 
-                        You are logged in!
+                        
                     </div>
                     <div class="panel-footer clearfix">
                         <div class="row">

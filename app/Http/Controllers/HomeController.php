@@ -42,7 +42,7 @@ class HomeController extends Controller
             $post_content = e($req->get('content'));
 
                 $rules = [
-                    'content' => 'required|string'
+                    
                 ];
 
             $validate = Validator::make($req->all(),$rules);
@@ -74,7 +74,7 @@ class HomeController extends Controller
                     return redirect(route('home'))->with('sucess','le statut a été posté');
 
                 } else {
-                   return back()->with('errors', 'Echec de la validation des données'.$validation->errors);
+                   return back()->with('errors', 'Echec de la validation des données');
                 }
                 
                 

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{pageTitle($title ?? '')}}</title>
     <link rel="stylesheet" href="{{asset('css/video.css')}}">
     <!-- googlefonts -->
@@ -23,55 +25,43 @@
 
     <style>
         body {
-
-            font-family:'Open Sans', Helvetica, Arial, sans-serif;
-            font-weight:400;
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+            font-weight: 400;
         }
-
+        
         footer {
-            margin-top:4em;
-            margin-bottom:4em;
+            margin-top: 4em;
+            margin-bottom: 4em;
         }
     </style>
 
 </head>
+
 <body>
 
-    @include('layout.partials.nav')
+    @include('layout.partials.nav') @if(session('success'))
+    <div class="container">
 
-    @if(session('success'))
-        <div class="container">
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>
 
-            <div class="alert alert-success">
-                {{session('success')}}
-            </div>
-        
-        </div>.
-        @endif
-        @if(session('errors'))
-        <div class="container">
+    </div>. @endif @if(session('errors'))
+    <div class="container">
 
-            <div class="alert alert-danger">
-                {{session('errors')}}
-            </div>
-        
-        </div>.
-        @endif
+        <div class="alert alert-danger">
+            {{session('errors')}}
+        </div>
 
-
-    @yield('content')
-
-    @include('layout.partials.footer')
-
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    </div> @endif @yield('content') @include('layout.partials.footer')
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <!--<script src="{{asset('js/checkmozaddon.js')}}"></script>-->
-        <script src="{{asset('js/adapter.js')}}"></script>
-        <script src="{{asset('js/function.js')}}"></script>
-        <script src="{{asset('js/dashboard.js')}}"></script>
-        
-        <script src="{{asset('js/videochat.js')}}"></script>
-        <!--<script src="{{asset('js/datachannel.js')}}"></script>-->
+    <script src="{{asset('js/adapter.js')}}"></script>
+    <!--<script src="{{asset('js/dashboard.js')}}"></script>-->
+    <script src="{{asset('js/ajax.js')}}"></script>
+    <script src="{{asset('js/webrtc.js')}}"></script>
+    <!--<script src="{{asset('js/datachannel.js')}}"></script>-->
 </body>
+
 </html>

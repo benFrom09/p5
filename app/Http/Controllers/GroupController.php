@@ -54,7 +54,9 @@ class GroupController extends Controller
 
        $group = Group::find($id);
        $users = User::all();
-       $top_20_posts = Post::all()->take(20);
+       $top_20_posts = Post::orderBy('created_at','desc')->get();
+       
+      // dd($req->json());
        if($group){
 
           $allowed_users = $group->users;
@@ -62,16 +64,28 @@ class GroupController extends Controller
               $user->name;
           }
           if($req->has('content')) {
+              if($req->ajax()){
+                  return response()->json(['message'=>'la requete est établie']);
+              }
             $post_content = e($req->get('content'));
             $user_post_content = new Post();
             $user_post_content->content = $post_content;
+            //dd($user_post_content->content);
             $user_post_content->user_id = $user->id;
-            $user_post_content->group_id = 0 ;
+            $user_post_content->group_id = $id ;
+            $user_post_content->image_url = '';
+            $user_post_content->video_url = '';
+            $user_post_content->type = 0;
             $user_post_content->save();
-            return redirect()->route('group',['id'=>$id]);
+            // ajax
+            
+                
+                return redirect()->route('group',['id'=>$id]);
+            
+            
         }  
 
-            return view('groups.group',compact('top_20_posts'));
+            return view('groups.group',compact('top_20_posts','group'));
 
        } else {
            //return execption 
