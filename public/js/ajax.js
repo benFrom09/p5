@@ -8,14 +8,15 @@ let postPannel = $('.post-pannel');
 const dashboard = $("#dashboard");
 
 
-$('.edit').find('a').on('click', function(event) {
+$('.edit').find('a').on('click', function(e) {
 
-    event.preventDefault();
-    postElmt = event.target.parentNode.parentNode.childNodes[3].childNodes[1];
+    e.preventDefault();
+    postElmt = e.target.parentNode.parentNode;
+    console.log(postElmt);
 
-    let postText = postElmt.textContent;
-    postId = event.target.parentNode.parentNode.childNodes[3].dataset['postid'];
-    //console.log(postId);
+    let postText = postElmt.childNodes[3].childNodes[1].textContent;
+    postId = postElmt.dataset['postid'];
+    console.log(postText);
     $('#post-content').val(postText);
     $("#edit-modal").modal();
 
@@ -28,55 +29,57 @@ $('#modal-save').on('click', function(e) {
     $.ajax({
         method: 'POST',
         url: url,
-        data: { content: $('#post-content').val(), post_images: $('#file-upload').val(), postId: postId, _token: token }
+        data: { content: $('#post-content').val(), postId: postId, _token: token }
 
-    }).done(function(msg) {
-        $(postElmt).text(msg['new_content']);
+    }).done(function(reponse) {
+        $(postElmt.childNodes[3].childNodes[1]).text(reponse['new_content']);
         $('#edit-modal').modal('hide');
     })
 });
 
-//create post
 
-$('#post-submit').on('click', function(e) {
+$("#post-form").submit('click', function(e) {
     e.preventDefault();
-    $.ajax({
+    console.log(this);
+    let url = $(this)[0].action;
+    $.ajax(url, {
         method: 'POST',
-        dataType: 'json',
-
+        //dataType: 'json',
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'X-CSRF-TOKEN': token
         },
-        url: $('#post-form')[0].action,
-        data: { content: $('#content').val() }
+        contentType: false,
+        processData: false,
+        enctype: 'multipart/form-data',
+        data: new FormData(this)
 
 
 
-    }).done(function(data) {
-        console.log(data);
-        //$(".post-dashboard").empty();
-        $(data).prependTo(".post-dashboard");
+    }).done(e, function(reponse) {
+        console.log(reponse);
+        $(".post-dashboard").empty();
+        $(reponse).prependTo(".post-dashboard");
         $('#content').val('');
-    }).fail(function(jqxhr) {
-        alert(jqxhr.responseText);
+    }).fail(function(err) {
+        console.error(err);
     })
-
 })
 
+
 //delete post 
-/*
+
 $('.delete-post').find('a').on('click', function(e) {
     e.preventDefault();
     let a = $(this);
+    postElmt = event.target.parentNode.parentNode;
     $.ajax({
         url: a.attr('href'),
-        type: 'DELETE'
+        method: 'GET'
 
-    }).done(function(data) {
-        console.log(data);
+    }).done(function(reponse) {
+        console.log(reponse);
+        console.log($(".post-dashboard")[0].removeChild(postElmt));
     }).fail(function(jqxhr) {
         alert(jqxhr.responseText);
     })
 })
-
-*/

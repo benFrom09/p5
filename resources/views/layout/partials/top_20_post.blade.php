@@ -1,12 +1,12 @@
 @foreach($top_20_posts as $post)
-<div class="panel panel-default post-pannel">
+<div class="panel panel-default post-pannel" data-postid ="{{$post->id}}">
     <div class="panel-heading">
            {{app\User::find($post->user_id)->name}}
         
     </div>
     
 
-    <div class="panel-body" data-postid ="{{$post->id}}">
+    <div class="panel-body" >
 
         <p id='post_body' class="post-body" >{{$post->content}}</p>
         @if($post->type == 1)
