@@ -14,18 +14,30 @@ let postBody = $(".post-body");
 let dashboardContent = $(".dashboard-list");
 const URL = 'https://opengraph.io/api/1.0/site';
 const id = '59fca8d730b7020b00f62836';
+//console.log(postBody);
 
-postBody.map(function(element) {
-
-    console.log(postBody[element].textContent);
-    if (postBody[element].textContent.match(/http/)) {
-        // alert('matches : ' + postBody[element] + ' ' + postBody[element].textContent);
-        let url = encodeURIComponent(postBody[element].textContent);
+postPannel.map(function(element) {
+    //console.log('PANNEL ', postPannel[element].childNodes[3].childNodes[1].textContent);
+    let text = postPannel[element].childNodes[3].childNodes[1].textContent;
+    //console.log(postBody[element].textContent);
+    if (text.match(/http/)) {
+        alert('matches : ' + postBody[element] + ' ' + postBody[element].textContent);
+        let url = encodeURIComponent(text);
         fetch(URL + '/' + url + '?app_id=' + id)
-            .then(response => response.json())
+            .then(response => {
+                return response.json();
+
+            })
             .then(data => {
-                if (data.error === 101) {
-                    console.log(data.error);
+                if (Object.getOwnPropertyNames(data)[0] === "error") {
+                    console.log('houuuuuuuuuura');
+                    if (data.error.code === 101) {
+                        var post = {
+                            text: data.error.message
+                        };
+                        console.log(postPannel[element].childNodes[3].childNodes[1]);
+                        displayErrors(post, postPannel[element].childNodes[3].childNodes[1]);
+                    }
                 }
 
                 var post = {
@@ -35,18 +47,21 @@ postBody.map(function(element) {
                     text: data.hybridGraph.description,
                     error: data.error
                 };
-                console.log(post);
+                //console.log(post);
                 posts.push(post);
                 console.log(posts);
                 displayPost(posts);
+                posts = [];
                 //storePost(posts);
                 //dashboardForm.reset();
 
-            }).catch(function(error) {
-                console.log('ceci est une erreur :', error);
+            }).catch(function(response) {
+                console.log('ceci est une erreur :', response);
             });
     }
 });
+
+
 
 /*************************************************************************
  * EDIT POST
@@ -99,9 +114,9 @@ $("#content").on('focusout', function(e) {
                     text: data.hybridGraph.description,
                     error: data.error
                 };
-                console.log(post);
+                // console.log(post);
                 posts.push(post);
-                console.log(posts);
+                //console.log(posts);
                 fillDashboard(posts);
                 //storePost(posts);
                 //dashboardForm.reset();
@@ -169,17 +184,18 @@ function removePost(e) {
 dashboardContent.on('click', removePost);
 
 function displayPost(post) {
-    var postsHtml = posts.map(function(post, i) {
-        if (post.link || post.image) {
-            return `<div class="dashboard-post" data-id="${i}"><p><a href="${post.link}">${post.title}</a></p><p><img class="img-responsive" src="${post.image}"/></p><p>${post.text}</p><span class="glyphicon glyphicon-remove"></span></div>`;
-        } else {
-            return `<div class="dashboard-post" data-id="${i}"><p>${post.title}</p><span class="glyphicon glyphicon-remove"></span></div>`;
-        }
+    console.log('displayPost :', post);
 
-    }).join('');
-    console.log('postHtml : ', postsHtml);
-    console.log($("#panel-body-post-content"));
-    $("#panel-body-post-content").append(postsHtml);
+}
+
+function displayErrors(data, target) {
+    let post = document.createElement("div");
+    post.classList.add("dashboard-post");
+    post.textContent = data.text;
+    //let postHtml = `<div class="dashboard-post"><p>${data.text}</p></div>`;
+    //console.log(target);
+    return target.after(post);
+
 }
 
 
@@ -209,9 +225,9 @@ $("#post-form").submit('click', function(e) {
 
     }).done(e, function(reponse) {
         console.log(reponse);
-        // $(".post-dashboard").empty();
-        //$(reponse).prependTo(".post-dashboard");
-        //$('#content').val('');
+        $(".post-dashboard").empty();
+        $(reponse).prependTo(".post-dashboard");
+        $('#content').val('');
     }).fail(function(err) {
         console.error(err);
     })
