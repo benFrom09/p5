@@ -43,8 +43,9 @@ class PostController extends Controller
                 $post->video_url = '';
                 $post->type = 0;
                 $req->user()->posts()->save($post); 
-                $top_20_posts = Post::orderBy('created_at','desc')->get();              
-                return view('layout.partials.top_20_post',compact('top_20_posts'));
+                //$top_20_posts = Post::orderBy('created_at','desc')->get();              
+                //return view('layout.partials.top_20_post',compact('top_20_posts'));
+                return $req;
             }
         
         

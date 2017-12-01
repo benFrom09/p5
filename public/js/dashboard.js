@@ -92,8 +92,8 @@ function removePost(e) {
     console.log('hello');
     var index = e.target.parentNode.dataset.id;
     posts.splice(index, 1);
-    fillDashboardList(posts);
-    storePost(posts);
+    //fillDashboard(posts);
+    //storePost(posts);
 
 }
 

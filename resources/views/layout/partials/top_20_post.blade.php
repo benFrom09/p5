@@ -6,7 +6,7 @@
     </div>
     
 
-    <div class="panel-body" >
+    <div class="panel-body" id="panel-body-post-content">
 
         <p id='post_body' class="post-body" >{{$post->content}}</p>
         @if($post->type == 1)

@@ -18,7 +18,7 @@
                     <label for="content">exprimez-vous</label>
                     <textarea class="form-control" name="content" id="content"></textarea>
                 </div>
-
+                <div class="dashboard-list content"></div>
 
             </div>
             <div class="panel-footer clearfix">
