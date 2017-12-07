@@ -35,8 +35,8 @@
 
 </head>
 <body>
-
-    @include('layout.partials.nav')
+<div id="wrapper">
+@include('layout.partials.nav')
 
     @if(session('success'))
         <div class="container">
@@ -45,7 +45,7 @@
                 {{session('success')}}
             </div>
         
-        </div>.
+        </div>
         @endif
         @if(session('errors'))
         <div class="container">
@@ -58,8 +58,8 @@
         @endif
 
 
-    @yield('content');
-
+    @yield('content')
+</div>
     @include('layout.partials.footer')
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>

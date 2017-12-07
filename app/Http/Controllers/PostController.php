@@ -14,7 +14,7 @@ class PostController extends Controller
 {
     public function createPost(Request $req, $id) {
             if($req->post_images) {
-               $fileName = str_random(8). '_' .  $req->post_images->getClientOriginalName();
+               $fileName = str_random(8). '_' .  $req->post_images->getClientOriginalName();           
                 $req->post_images->move('post_images',$fileName);
 
                 $post = new Post();
@@ -32,6 +32,7 @@ class PostController extends Controller
                 $req->user()->posts()->save($post); 
                 $top_20_posts = Post::orderBy('created_at','desc')->get();              
                 return view('layout.partials.top_20_post',compact('top_20_posts'));
+                
             } else {
                 $this->validate($req, [
                     'content' => 'required'

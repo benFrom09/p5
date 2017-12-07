@@ -18,8 +18,10 @@
     </div>
    
     @if(Auth::user() == $post->user)
+    <div class="post-edit">
     <div class="edit"><a href="#">editer</a></div>
     <div class="delete-post"><a href="{{route('post.delete',['post_id'=>$post->id])}}">effacer</a></div>
+    </div>
     @endif
 </div>
 @endforeach

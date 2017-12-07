@@ -78,9 +78,7 @@ class HomeController extends Controller
                 }
                 
                 
-           }
-
-           
+           }       
 
             $user_post_content = new Post();
             $user_post_content->content = $post_content;
@@ -92,8 +90,10 @@ class HomeController extends Controller
             $user_post_content->save();
             return redirect(route('home'))->with('sucess','le statut a été posté');
         }
+
+    
         
-        $top_20_posts = Post::all()->take(20);
+         $top_20_posts = Post::all();
         
         
         

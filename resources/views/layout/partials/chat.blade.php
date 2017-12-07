@@ -23,9 +23,9 @@
                             <span id="typingInfo"></span>
                             <div class="input-group">
                                  <input type="hidden" id="messageSender" value="{{Auth::user()->name}}">
-                                <input id="chatInput" type="text" class="form-control input-sm chat_input" placeholder="Type message here...">
+                                <input id="chatInput" type="text" class="form-control input-sm chat_input" placeholder="Tapez votre message...">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-primary btn-sm" id="chatSendBtn"  >Send</button>
+                                    <button class="btn btn-primary btn-sm" id="chatSendBtn"  >Envoyer</button>
                                 </span>
                             </div>
                             <input class="form-control" id="files" name="file" type="file">

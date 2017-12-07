@@ -20,6 +20,7 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('css/default.css')}}">
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
     <script src="https://use.fontawesome.com/49e607a5ce.js"></script>
 
@@ -38,22 +39,27 @@
 </head>
 
 <body>
-
-    @include('layout.partials.nav') @if(session('success'))
+    <div id="group-wrapper">
+    @include('layout.partials.nav')
+     @if(session('success'))
     <div class="container">
 
         <div class="alert alert-success">
             {{session('success')}}
         </div>
 
-    </div>. @endif @if(session('errors'))
+    </div> @endif
+     @if(session('errors'))
     <div class="container">
 
         <div class="alert alert-danger">
             {{session('errors')}}
         </div>
 
-    </div> @endif @yield('content') @include('layout.partials.footer')
+    </div> @endif
+     @yield('content')
+     </div> 
+    @include('layout.partials.footer')
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

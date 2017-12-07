@@ -26,10 +26,10 @@
     <!-- Call Buttons -->
 
     <!-- Timer -->
-    <div class="video-couter" style="color:#fff">
+    <!--<div class="video-couter" style="color:#fff">
         <span id="countHr"></span>h:
         <span id="countMin"></span>m:
         <span id="countSec"></span>s
-    </div>
+    </div>-->
     <!-- Timer -->
 </div>

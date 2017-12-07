@@ -44,8 +44,8 @@ body {
 }
 
 .chat-pane {
-    position: absolute;
+    /*position: absolute;*/
     z-index: 1000;
-    left: 0;
+    /*left: 0;*/
     width: 100%;
 }

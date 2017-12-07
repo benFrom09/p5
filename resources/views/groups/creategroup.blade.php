@@ -1,7 +1,8 @@
-@extends('layout.default');
+@extends('layout.default')
 
 @section('content')
 
+<div class="container">
 
 <form action="" method="post">
 {{csrf_field()}}
@@ -35,7 +36,7 @@
 
 </form>
 
-
+</div>
 
 @stop
 

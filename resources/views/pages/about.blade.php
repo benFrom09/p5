@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container contact">
 
         <h2>WHAT is {{config('app.name')}}</h2>
         <hr>

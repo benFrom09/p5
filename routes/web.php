@@ -17,6 +17,7 @@ Route::get('/', [
 ]);
 
 Route::get('/about', 'PagesController@about')->name('About');
+Route::get('/contact','PagesController@Contact')->name('Contact');
    
 Auth::routes();
 
