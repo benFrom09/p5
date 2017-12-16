@@ -77,6 +77,12 @@ class PostController extends Controller
             $post->update();
             return response()->json(['new_content'=>$post->content], 200);
         }
+
+
+        public function getlastPost(){
+            $post = Post::get()->last();
+            return response()->view('layout.partials.singlepost',compact('post'));
+        }
     
 
     

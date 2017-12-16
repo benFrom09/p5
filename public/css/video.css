@@ -1,7 +1,5 @@
-html,
-body {
-    width: 100%;
-    height: 100vh;
+.video-container {
+    display: none;
 }
 
 
@@ -27,7 +25,8 @@ body {
 #remoteVideo {
     width: 100%;
     min-height: 100%;
-    z-index: -100;
+    /*z-index: -100;*/
+    position: relative;
 }
 
 #localVideo {
@@ -43,9 +42,133 @@ body {
     position: relative;
 }
 
+.initVideo {
+    text-decoration: none;
+}
+
+.initVideo:hover {
+    color: black;
+}
+
+#icons {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    top: 0;
+    left: 0%;
+    width: 100%;
+    color: #fff;
+    font-size: 20px;
+    padding: 20px;
+    background: rgba(75, 33, 33, 0.5);
+    margin: auto;
+}
+
+#unmuted-mic {
+    display: inline-block;
+}
+
+#muted-mic {
+    display: none;
+}
+
+#play-icon {
+    display: none;
+}
+
+#pause-icon {
+    display: inline-block;
+}
+
+#video-button {
+    display: inline-block;
+    width: 25%;
+}
+
+.resolution {
+    font-size: 12px;
+}
+
+button {
+    border: none;
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.i-margin-right {
+    margin-right: 10px;
+}
+
+.fa-microphone,
+.fa-microphone-slash,
+.fa-pause-circle,
+.fa-play-circle {
+    display: inline-block;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.fa-microphone-slash {
+    font-size: 15px;
+}
+
 .chat-pane {
     /*position: absolute;*/
     z-index: 1000;
     /*left: 0;*/
     width: 100%;
+}
+
+.chat-pane-top-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.closeChat {
+    width: 5%;
+    cursor: pointer;
+}
+
+.msg_container_base {
+    background: #fff;
+    margin: 0;
+    padding: 0 10px 10px;
+    max-height: 300px;
+    overflow-x: hidden;
+    display: none;
+}
+
+.messages {
+    background: #13c9dc33;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+
+.messages>.messageText {
+    margin: auto;
+    padding: 5px;
+    word-wrap: break-word;
+}
+
+.messageText .right {
+    font-size: 11px;
+    color: #273938;
+    float: right;
+}
+
+.show {
+    background: #30c0d0;
+    padding: 20px;
+    border-radius: 5px;
+    /* color: #fff; */
+    text-align: center;
+    width: 50%;
+    margin: 20px auto;
 }

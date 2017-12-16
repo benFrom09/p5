@@ -1,13 +1,14 @@
 <div class="panel panel-default post-pannel" data-postid ="{{$post->id}}">
     <div class="panel-heading">
-           {{app\User::find($post->user_id)->name}}
+           {{$post->user->name}}
         
     </div>
     
 
-    <div class="panel-body" >
+    <div class="panel-body panel-body-post-content">
 
         <p id='post_body' class="post-body" >{{$post->content}}</p>
+        <hr>
         @if($post->type == 1)
         
         <img src="{{asset('post_images/'. $post->image_url)}}" alt="" class="img-responsive">
@@ -17,12 +18,9 @@
     </div>
    
     @if(Auth::user() == $post->user)
+    <div class="post-edit">
     <div class="edit"><a href="#">editer</a></div>
-    <div><a href="{{route('post.delete',['post_id'=>$post->id])}}">effacer</a></div>
+    <div class="delete-post"><a href="{{route('post.delete',['post_id'=>$post->id])}}">effacer</a></div>
+    </div>
     @endif
 </div>
-<script>
-    var post_user = '{{Auth::user()->name}}';
-    var post_id = '{{$post->id}}';
-    var deleteUrl = "{{route('post.delete',['post_id'=>$post->id])}}"
-</script>

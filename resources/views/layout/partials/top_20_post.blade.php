@@ -9,8 +9,9 @@
     <div class="panel-body panel-body-post-content">
 
         <p id='post_body' class="post-body" >{{$post->content}}</p>
+        <hr>
         @if($post->type == 1)
-
+        
         <img src="{{asset('post_images/'. $post->image_url)}}" alt="" class="img-responsive">
 
         @endif

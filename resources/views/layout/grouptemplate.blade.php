@@ -42,32 +42,34 @@
     <div id="group-wrapper">
     @include('layout.partials.nav')
      @if(session('success'))
-    <div class="container">
+        <div class="container">
 
-        <div class="alert alert-success">
+            <div class="alert alert-success">
             {{session('success')}}
-        </div>
+            </div>
 
-    </div> @endif
+        </div> @endif
      @if(session('errors'))
-    <div class="container">
+        <div class="container">
 
-        <div class="alert alert-danger">
-            {{session('errors')}}
-        </div>
+            <div class="alert alert-danger">
+                {{session('errors')}}
+            </div>
 
-    </div> @endif
+        </div> @endif
      @yield('content')
-     </div> 
-    @include('layout.partials.footer')
+     
+    </div> 
+    
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{{asset('js/adapter.js')}}"></script>
-    <!--<script src="{{asset('js/dashboard.js')}}"></script>-->
-    <script src="{{asset('js/ajax.js')}}"></script>
+    <!--<script src="{{asset('js/ajax.js')}}"></script>-->
+    <script src="{{asset('js/post.js')}}"></script>
     <script src="{{asset('js/webrtc.js')}}"></script>
-    <!--<script src="{{asset('js/datachannel.js')}}"></script>-->
+    <script src="{{asset('js/videocontrolpanel.js')}}"></script>
+    <script src="{{asset('js/chatpanelcontroler.js')}}"></script>
 </body>
 
 </html>

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Group;
-use app\Post;
+use App\Post;
 
 class User extends Authenticatable
 {
@@ -47,5 +47,9 @@ class User extends Authenticatable
 
     public function posts() {
         return $this->hasMany(Post::class);
+    }
+
+    public function profile() {
+        return $this->hasOne('App\Profile');
     }
 }

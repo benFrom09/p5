@@ -23,7 +23,8 @@ class CreateGroupController extends Controller
              $group = Group::create([
             "name" => $name,
             "user_name" =>$req->get('user_name'),
-            "category_id" =>$req->get('category_id')
+            "category_id" =>null,
+            "description"
             ]);
 
             $group->users()->sync(\Auth::user()->id);

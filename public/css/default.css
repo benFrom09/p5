@@ -1,7 +1,9 @@
 html,
 body {
     width: 100%;
+    font-family: Roboto, Arial, sans-serif;
     height: 100%;
+    background: url(http://localhost:8000/img/terre3.jpg) no-repeat top/cover;
 }
 
 #wrapper {
@@ -10,7 +12,19 @@ body {
 }
 
 #group-wrapper {
-    background: url(http://localhost:8000/img/terre3.jpg) no-repeat top/cover;
+    /*background: url(http://localhost:8000/img/terre3.jpg) no-repeat top/cover;*/
+}
+
+h1,
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.message {
+    text-align: center;
+    padding: 20px;
+    line-height: 2em;
 }
 
 .navbar {
@@ -18,14 +32,107 @@ body {
     border: none;
 }
 
-.navber-default .navbar-brand {
+.navbar-default .navbar-brand {
     color: #fff;
+}
+
+.navbar-default .navbar-nav>.active>a {
+    background: azure;
+    border-radius: 2px;
+}
+
+.navbar-default .navbar-nav>.active>a:hover {
+    background: azure;
+    border-radius: 2px;
+}
+
+.logout:active {
+    background-image: none;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.open>a {
+    background: azure;
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover {
+    color: #555;
+    /* background-color: #e7e7e7; */
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover {
+    color: #555;
+    /* background-color: #e7e7e7; */
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover {
+    color: #555;
+    /* background-color: #e7e7e7; */
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover {
+    color: #555;
+    background: azure;
+}
+
+.navbar-default .navbar-nav>.active>a :hover {
+    background: #835353;
 }
 
 footer {
     background: white;
     height: 10%;
     margin-bottom: 0;
+}
+
+.menu {
+    color: white;
+}
+
+.hello {}
+
+.menu-icon-list {
+    display: flex;
+    list-style-type: none;
+    padding: 20px;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.menu-icon-list-bottom {
+    display: flex;
+    list-style-type: none;
+    padding: 20px;
+    margin-top: 20px;
+    justify-content: space-around;
+}
+
+.menu-icon-list li {
+    width: 33.3%;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon-container a {
+    text-decoration: none;
+    color: #cfdbe6;
+}
+
+.icon-title {
+    text-align: center;
 }
 
 .chat-window {
@@ -37,7 +144,7 @@ footer {
 
 .panel {
     margin-bottom: 20px;
-    background-color: #ffffffa8;
+    background-color: #ffffff;
     border: 1px solid transparent;
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
@@ -48,8 +155,35 @@ footer {
     background-image: -webkit-linear-gradient(top, #f5f5f5 0, #e8e8e8 100%);
     background-image: -o-linear-gradient(top, #f5f5f5 0, #e8e8e8 100%);
     background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#2d0808));
-    background-image: linear-gradient(to bottom, #f5f5f5 0, #13c9dcc7 100%);
+    background-image: linear-gradient(to bottom, #f5f5f5 0, #fff 100%);
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
+}
+
+.panel-default>.panel-heading {
+    color: #333;
+    /* background-color: #f5f5f5; */
+    border-color: #ddd;
+}
+
+.panel-heading {
+    background: #fff;
+    border-bottom: 1px solid #dad2d2;
+}
+
+.panel-group {}
+
+.group-skill {
+    margin: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.group-skill h3 {
+    margin: 0;
+}
+
+.panel-footer {
+    background-color: #fff;
 }
 
 .post-edit {
@@ -65,11 +199,37 @@ footer {
 .edit a,
 .delete-post a {
     text-decoration: none;
-    color: #fff;
+    color: #383838;
 }
 
 .contact {
     color: white;
+}
+
+.img-thumbnail {
+    border: none;
+}
+
+.create-group-form {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.link-chat {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/***************************************************************************
+*
+*   Profile
+*
+****************************************************************************/
+
+.profile-data {
+    padding-left: 10px;
+    font-size: 12px;
 }
 
 
@@ -84,6 +244,28 @@ input[type="file"] {
 .c-file-upload {
     display: inline-block;
     padding: 5px 10px;
-    background-color: #e3e3e3da;
     cursor: pointer;
+}
+
+button {
+    text-decoration: none;
+}
+
+.label {
+    color: #c2c2c2;
+}
+
+
+/**********************************************************
+*           input
+**********************************************************/
+
+.alert-danger,
+.alert-success {
+    text-align: center;
+}
+
+.alert-success {
+    background: local;
+    color: #fff;
 }

@@ -1,5 +1,4 @@
 /*
-
 /*************************************************************************
  * AJAX REQUEST JS
  *************************************************************************/
@@ -14,7 +13,7 @@ let postBody = $(".post-body");
 let dashboardContent = $(".dashboard-list");
 const URL = 'https://opengraph.io/api/1.0/site';
 const id = '59fca8d730b7020b00f62836';
-//console.log(postBody);
+
 console.log($(".post-dashboard")[0]);
 
 postPannel.map(function(element) {
@@ -31,12 +30,12 @@ postPannel.map(function(element) {
             })
             .then(data => {
                 if (Object.getOwnPropertyNames(data)[0] === "error") {
-                    console.log('houuuuuuuuuura');
+                    //console.log('houuuuuuuuuura');
                     if (data.error.code === 101) {
                         var post = {
                             text: data.error.message
                         };
-                        console.log(postPannel[element].childNodes[3].childNodes[1]);
+                        //console.log(postPannel[element].childNodes[3].childNodes[1]);
                         displayErrors(post, postPannel[element].childNodes[3].childNodes[1]);
                     }
                 }
@@ -49,7 +48,7 @@ postPannel.map(function(element) {
                     error: data.error
                 };
                 posts.push(post);
-                console.log(posts);
+                //console.log(posts);
                 displayPost(post, postPannel[element].childNodes[3].childNodes[1]);
                 posts = [];
                 //storePost(posts);
@@ -71,11 +70,11 @@ $('.edit').find('a').on('click', function(e) {
 
     e.preventDefault();
     postElmt = e.target.parentNode.parentNode;
-    console.log(postElmt);
+    //console.log(postElmt);
 
     let postText = postElmt.childNodes[3].childNodes[1].textContent;
     postId = postElmt.dataset['postid'];
-    console.log(postText);
+    //console.log(postText);
     $('#post-content').val(postText);
     $("#edit-modal").modal();
 
@@ -114,12 +113,12 @@ $("#content").on('focusout', function(e) {
                     text: data.hybridGraph.description,
                     error: data.error
                 };
-                console.log(post);
+                //console.log(post);
                 posts.push(post);
                 //console.log(posts);
                 fillDashboard(posts);
                 //storePost(posts);
-                dashboardForm.reset();
+
                 posts = [];
             }).catch(function(error) {
                 console.log('ceci est une erreur :', error);
@@ -129,7 +128,7 @@ $("#content").on('focusout', function(e) {
         posts.push(post)
         post.title = getFileName();
         fillDashboard(posts);
-        dashboardForm.reset();
+        //dashboardForm.reset();
     }
 
 
@@ -165,7 +164,7 @@ function fillDashboard(post) {
 }
 
 function storePost(data, e) {
-    console.log(data);
+    //console.log(data);
     $.ajax(url, {
         method: 'POST',
         //dataType: 'json',
@@ -255,12 +254,13 @@ $("#post-form").submit('click', function(e) {
 
 
     }).done(e, function(reponse) {
-        console.log(reponse);
+        //console.log(reponse);
+
         $(reponse).find('a').on('click', function(e) {
             e.preventDefault();
-            alert('click');
+            // alert('click');
             let a = $(this);
-            postElmt = event.target.parentNode.parentNode;
+            postElmt = event.target.parentNode.parentNode.parentNode;
             //console.log(postElmt);
             $.ajax({
                 url: a.attr('href'),
@@ -268,7 +268,7 @@ $("#post-form").submit('click', function(e) {
 
             }).done(function(reponse) {
                 //console.log(reponse);
-                //$(".post-dashboard")[0].removeChild(postElmt);
+                $(".post-dashboard")[0].removeChild(postElmt);
             }).fail(function(jqxhr) {
                 console.log(jqxhr.responseText);
             })
@@ -293,7 +293,7 @@ function deletePostListener() {
         e.preventDefault();
         alert('click');
         let a = $(this);
-        postElmt = event.target.parentNode.parentNode;
+        postElmt = event.target.parentNode.parentNode.parentNode;
         console.log(postElmt);
         $.ajax({
             url: a.attr('href'),
@@ -310,9 +310,11 @@ function deletePostListener() {
 
 $('.delete-post').find('a').on('click', function(e) {
     e.preventDefault();
+
     let a = $(this);
-    postElmt = event.target.parentNode.parentNode;
+    postElmt = event.target.parentNode.parentNode.parentNode;
     console.log(postElmt);
+
     $.ajax({
         url: a.attr('href'),
         method: 'GET'
@@ -323,6 +325,7 @@ $('.delete-post').find('a').on('click', function(e) {
     }).fail(function(jqxhr) {
         console.log(jqxhr.responseText);
     })
+
 });
 
 

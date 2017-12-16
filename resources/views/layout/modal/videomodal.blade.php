@@ -15,7 +15,7 @@
 
 <!--Modal to give options to receive call-->
 <div id="rcivModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content text-center">
         <div class="modal-header" id="calleeInfo"></div>
 
         <div class="modal-body text-center">

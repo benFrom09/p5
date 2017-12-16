@@ -70,7 +70,6 @@ body.show-float .overlay {
 
 .dashboard-post {
     display: block;
-    background: #f2f2f2;
     padding: 20px;
     transition: 0.3s ease all;
     border-bottom: 1px solid #DDD;
@@ -94,11 +93,11 @@ body.show-float .overlay {
     border-bottom-right-radius: 6px;
 }
 
-.dashboard-post .glyphicon-remove {
+.dashboard-list .glyphicon-remove {
     position: absolute;
     top: 10px;
     right: 20px;
-    color: rgba(8, 208, 223, 0.637);
+    color: rgba(223, 15, 8, 0.637);
     font-size: 12px;
     transition: 0.3s ease color;
     cursor: pointer;
